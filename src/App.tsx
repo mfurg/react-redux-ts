@@ -1,14 +1,16 @@
 import React from "react";
-import TodoList from "./components/TodoList";
-import UserList from "./components/UserList";
+import { BrowserRouter } from "react-router-dom";
+import { AppRouter } from "./components/Router/AppRouter";
+import { Navbar } from "./components/Router/Navbar";
+
+import "./styles/App.css"
 
 function App() {
   return (
-    <div>
-      <UserList />
-      <hr />
-      <TodoList />
-    </div>
+    <BrowserRouter>
+      <AppRouter />
+      <Navbar />
+    </BrowserRouter>
   );
 }
 

@@ -1,7 +1,9 @@
 import * as UserActionCreators from './user'
-import * as TodoActionCreators from './todo'
+import * as ItemActionCreators from './item'
+import * as CartActionCreators from './cart'
 
 export default {
-    ...TodoActionCreators,
-    ...UserActionCreators
+    ...ItemActionCreators,
+    ...UserActionCreators,
+    ...CartActionCreators
 }

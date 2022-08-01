@@ -1,20 +1,28 @@
 import { UserState, UserAction, UserActionTypes } from "../../types/user"
 
+const token = localStorage.getItem('token');
 
 const initialState: UserState = {
     users: [],
-    loading: false,
-    error: null,
+    user: {},
+    page: 1,
+    limit: 5,
+    totalPages: 1,
+    isLogged: token ? true : false,
 }
 
 export const userReducer = (state = initialState, action:UserAction): UserState => {
     switch (action.type){
-        case UserActionTypes.FETCH_USERS  :
-            return {loading: true, error: null, users: []}
-        case UserActionTypes.FETCH_USERS_SUCCSESS:
-            return {loading: false, error: null, users: action.payload}
-        case UserActionTypes.FETCH_USERS_ERROR:
-            return {loading: false, error: action.payload, users: []}
+        case UserActionTypes.FETCH_USERS:
+            return {...state, users: action.payload}
+        case UserActionTypes.FETCH_CURRENT_USER:
+            return {...state, user: action.payload}
+        case UserActionTypes.FETCH_USERS_PAGE:
+            return {...state, page: action.payload}
+        case UserActionTypes.SET_TOTAL_PAGES:
+            return {...state, totalPages: action.payload}
+        case UserActionTypes.LOGIN:
+            return {...state, isLogged: !state.isLogged}
         default:
             return state;
     }
