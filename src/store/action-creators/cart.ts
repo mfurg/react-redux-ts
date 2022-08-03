@@ -10,3 +10,7 @@ export function addItem (item: any): CartAction {
 export function removeItem (id: number): CartAction {
     return {type: CartActionTypes.REMOVE, payload: id}
 }
+
+export function addQuantity (id: number, quantity: number): CartAction {
+    return {type: CartActionTypes.QUANTITY, payload: {id, quantity}}
+}

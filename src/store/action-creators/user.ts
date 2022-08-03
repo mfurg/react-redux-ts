@@ -1,18 +1,14 @@
-import axios from "axios"
 import { Dispatch } from "react"
 import { UserAction, UserActionTypes } from "../../types/user"
 import api from "components/helper/api"
 
-export const fetchUsers = (page = 1, limit = 5) => {
-
-    const url = 'https://jsonplaceholder.typicode.com/users';
+export const fetchUsers = () => {
     return async (dispatch: Dispatch<UserAction>) => {
-        axios.get(url, {params: {_page: page, _limit: limit}})
-                .then(response => {
-                    dispatch({type: UserActionTypes.FETCH_USERS, payload: response.data})
-                    dispatch({type: UserActionTypes.SET_TOTAL_PAGES, payload: (Number(response.headers['x-total-count'])/limit)})
-                })
-                .catch(response => console.log(response.message))
+        await api.users.all()
+            .then(response => {
+                dispatch({type: UserActionTypes.FETCH_USERS, payload: response.data})
+            })
+            .catch(response => console.log(response.message))
     }
 }
 

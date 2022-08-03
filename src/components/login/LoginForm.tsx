@@ -7,7 +7,7 @@ import 'styles/Form.css';
 
 
 
-const LoginForm = ({setVisible}:any) => {
+const LoginForm = ({setVisible, setAction}:any) => {
 
     const {setLogin, fetchCurrentUser} = useActions();
     const [currentUser, setCurrentUser] = useState({});
@@ -27,7 +27,7 @@ const LoginForm = ({setVisible}:any) => {
                 })
     }
 
-    const onChange = (event:React.ChangeEvent<HTMLInputElement>) => {
+    const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const {name, value} = event.target;
         setCurrentUser({...currentUser, [name]: value});
     }
@@ -46,7 +46,7 @@ const LoginForm = ({setVisible}:any) => {
                 </div>
                 <div className='login_buttons'>
                     <button className="mybutton">Submit</button>
-                    <Link to="/signup"><button className="mybutton">Sign Up</button></Link>
+                    <button onClick={() => setAction('signup')} className="mybutton">Sign Up</button>
                 </div>
             </form>
         </div>

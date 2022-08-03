@@ -27,6 +27,7 @@ button {
     color: teal;
     min-width: 70px;
     padding: 5px;
+    margin: 10px 0px 10px 10px;
     cursor: pointer;
 }
 
@@ -80,7 +81,7 @@ button:hover {
 }
 
 input {
-    margin-right: auto;
-    min-height: 40px;
-    min-width: 50px;
+    margin-right: 10px;
+    min-height: 25px;
+    width: 50px;
 }
