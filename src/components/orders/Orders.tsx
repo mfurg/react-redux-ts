@@ -20,6 +20,10 @@ const Orders: React.FC = () => {
                 autoClose: 5000}))
     },[])
 
+    if(orders.length === 0){
+        return (<div className="section"><h2>No orders yet.</h2></div>)
+    }
+
     return(
         <div className="section">
             <div className="todos">
