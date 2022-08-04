@@ -4,6 +4,7 @@ import { useActions } from 'hooks/useActions';
 import api from '../helper/api';
 
 import 'styles/Form.css';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -11,6 +12,7 @@ const LoginForm = ({setVisible, setAction}:any) => {
 
     const {setLogin, fetchCurrentUser} = useActions();
     const [currentUser, setCurrentUser] = useState({});
+    const navigate = useNavigate();
 
     const onSubmit = (event: SyntheticEvent) => {
         event.preventDefault();
@@ -24,6 +26,7 @@ const LoginForm = ({setVisible, setAction}:any) => {
                     toast.success('Login success.', {
                         position: "top-center",
                         autoClose: 5000});
+                    navigate('/items')
                 })
                 .catch( error => {
                     toast.error(error.message + '. Login failed.', {
