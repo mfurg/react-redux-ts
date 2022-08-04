@@ -3,6 +3,7 @@ import api from '../helper/api';
 
 import 'styles/Form.css';
 import { useActions } from 'hooks/useActions';
+import { toast } from 'react-toastify';
 
 const FormEditItem = ({item, setVisible}: any) => {
 
@@ -14,9 +15,14 @@ const FormEditItem = ({item, setVisible}: any) => {
         api.items.edit(currentItem, item.id)
             .then(() => {
                 setVisible(false)
-                alert('new item edited')
-                fetchItems()})
-            .catch((error) => console.log(error.message))
+                fetchItems()
+                toast.success('Edit success.', {
+                    position: "top-center",
+                    autoClose: 5000});
+            })
+            .catch((error) => toast.error(error.message + '. Edit failed.', {
+                position: "top-center",
+                autoClose: 5000}))
     }
 
     const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {

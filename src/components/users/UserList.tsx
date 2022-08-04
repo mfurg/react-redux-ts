@@ -4,6 +4,7 @@ import { Modal } from "components/helper/Modal";
 import { useActions } from "hooks/useActions";
 import { useTypedSelector } from "hooks/useTypedSelector";
 import FormEditUser from "./FormEditUser";
+import { toast } from "react-toastify";
 
 
 const UserList: React.FC = () => {
@@ -16,10 +17,14 @@ const UserList: React.FC = () => {
     const deleteUser = (id: number) => {
         api.users.delete(id)
         .then(() => {
-            alert('user id ' + id + ' deleted')
+            toast.success('User ' + id + ' deleted', {
+                position: "top-center",
+                autoClose: 5000});
             fetchUsers()
         })
-        .catch((error) => console.log(error.message))
+        .catch((error) => toast.error(error.message + '. Delete failed.', {
+            position: "top-center",
+            autoClose: 5000}))
     }
     console.log(editUser)
     return (

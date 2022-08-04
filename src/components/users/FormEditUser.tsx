@@ -1,6 +1,7 @@
 import api from "components/helper/api";
 import { useActions } from "hooks/useActions";
 import { SyntheticEvent, useState } from "react";
+import { toast } from "react-toastify";
 
 const FormEditUser = ({user, setVisible}: any) => {
 
@@ -12,10 +13,14 @@ const FormEditUser = ({user, setVisible}: any) => {
         api.users.edit(currentUser, user.id)
             .then(() => {
                 setVisible(false)
-                alert('new user edited')
+                toast.success('User edited.', {
+                    position: "top-center",
+                    autoClose: 5000});
                 fetchUsers();
-                fetchCurrentUser()
-            })
+                fetchCurrentUser()})
+            .catch(error => toast.error(error.message + '. Edit failed.', {
+                    position: "top-center",
+                    autoClose: 5000}))
     }
 
     const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {

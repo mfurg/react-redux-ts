@@ -1,5 +1,6 @@
 import api from "components/helper/api";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 import 'styles/Orders.css'
 
@@ -11,7 +12,12 @@ const Orders: React.FC = () => {
         api.orders.all()
             .then(response => {
                 setOrders(response.data)
-            })
+                toast.success('Orders loaded successfully.', {
+                    position: "top-center",
+                    autoClose: 5000});
+            }).catch(error => toast.error(error.message + '. Loadung failed.', {
+                position: "top-center",
+                autoClose: 5000}))
     },[])
 
     return(

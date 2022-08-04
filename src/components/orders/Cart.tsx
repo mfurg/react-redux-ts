@@ -8,7 +8,7 @@ const Cart = () => {
 
     const {cart} = useTypedSelector(state => state.cart);
     const {addQuantity} = useActions();
-    const {user, isLogged} = useTypedSelector(state => state.user);
+    const {isLogged} = useTypedSelector(state => state.user);
     const [visible, setVisible] = useState(false);
     const [total, setTotal] = useState([]);
     const {removeItem} = useActions();

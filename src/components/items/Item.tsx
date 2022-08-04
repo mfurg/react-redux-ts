@@ -3,6 +3,8 @@ import { Modal } from "components/helper/Modal";
 import { useActions } from "hooks/useActions";
 import { useTypedSelector } from "hooks/useTypedSelector";
 import { useState } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import FormEditItem from "./FormEditItem";
 
 const Item = () => {
@@ -18,8 +20,12 @@ const Item = () => {
         api.items.delete(id)
             .then(() => {
                 fetchItems();
-                alert('item ' + id + ' deleted')})
-            .catch((error) => console.log(error.message))
+                toast.success('Item '+id+' deleted', {
+                    position: "top-center",
+                    autoClose: 5000});})
+            .catch((error) => toast.error(error + 'Item not added', {
+                position: "top-center",
+                autoClose: 5000}))
     }
 
     return (
@@ -27,6 +33,17 @@ const Item = () => {
         <Modal visible={visible} setVisible={setVisible}>
             <FormEditItem setVisible={setVisible} item={editItem}/>
         </Modal>
+        <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                />
         {items.map((item: any) => (
         <div className="item" key={item.id}>
             <div className='item_content'>

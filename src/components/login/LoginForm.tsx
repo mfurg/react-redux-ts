@@ -1,5 +1,5 @@
 import React, { SyntheticEvent, useState } from 'react';
-import { Link } from "react-router-dom";
+import { toast } from 'react-toastify';
 import { useActions } from 'hooks/useActions';
 import api from '../helper/api';
 
@@ -21,9 +21,14 @@ const LoginForm = ({setVisible, setAction}:any) => {
                     setLogin();
                     fetchCurrentUser();
                     setVisible(false)
+                    toast.success('Login success.', {
+                        position: "top-center",
+                        autoClose: 5000});
                 })
                 .catch( error => {
-                    alert(error.message)
+                    toast.error(error.message + '. Login failed.', {
+                        position: "top-center",
+                        autoClose: 5000})
                 })
     }
 

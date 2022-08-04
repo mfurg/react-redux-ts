@@ -3,6 +3,7 @@ import React, {SyntheticEvent, useState} from 'react';
 import api from '../helper/api';
 
 import 'styles/Form.css';
+import { toast } from 'react-toastify';
 
 
 const FormAddUser = ( {setVisible}: any ) => {
@@ -15,9 +16,13 @@ const FormAddUser = ( {setVisible}: any ) => {
         api.users.add(currentUser)
             .then(() => {
                 setVisible(false)
-                alert('new user added')
-                fetchUsers();
-            })
+                toast.success('New user added.', {
+                    position: "top-center",
+                    autoClose: 5000});
+                fetchUsers()})
+            .catch(error => toast.error(error.message + '. Add failed.', {
+                    position: "top-center",
+                    autoClose: 5000}))
     }
 
     const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {

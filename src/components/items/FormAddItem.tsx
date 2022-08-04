@@ -1,11 +1,12 @@
 import api from 'components/helper/api';
 import { useActions } from 'hooks/useActions';
 import React, {SyntheticEvent, useState} from 'react';
+import { toast } from 'react-toastify';
 
 import 'styles/Form.css';
 
 
-const FormAddItem = ( {setVisible, setSearchQuery}: any ) => {
+const FormAddItem = ( {setVisible}: any ) => {
 
     const [currentItem, setCurrentItem] = useState({});
     const {fetchItems} = useActions();
@@ -15,10 +16,16 @@ const FormAddItem = ( {setVisible, setSearchQuery}: any ) => {
 
         api.items.add(currentItem)
             .then(() => {
-                setVisible(false)
-                alert('item added')
+                toast.success('Item added', {
+                    position: "top-center",
+                    autoClose: 5000});
                 fetchItems();
-                debugger
+                setVisible(false)
+            })
+            .catch(error => {
+                toast.error(error + 'Item not added', {
+                    position: "top-center",
+                    autoClose: 5000});
             })
     }
 

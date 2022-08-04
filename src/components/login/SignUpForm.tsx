@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import api from '../helper/api';
 
 import 'styles/Form.css';
+import { toast } from 'react-toastify';
 
 
 const SignUpForm = ({setVisible}: any) => {
@@ -19,9 +20,13 @@ const SignUpForm = ({setVisible}: any) => {
                 localStorage.setItem("token", res.headers.authorization);
                 setLogin()
                 setVisible(false)
-                alert('user registered')
+                toast.success('You`re registered.', {
+                    position: "top-center",
+                    autoClose: 5000});
                 history('/items')})
-            .catch( error => alert(error.message))
+            .catch( error => toast.error(error.message + '. Register failed.', {
+                    position: "top-center",
+                    autoClose: 5000}))
     }
 
     const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {

@@ -2,6 +2,7 @@ import React, { SyntheticEvent } from 'react';
 import api from '../helper/api';
 
 import 'styles/Orders.css';
+import { toast } from 'react-toastify';
 
 const FormOrder = ({setVisible, cart, total}: any) => {
 
@@ -14,9 +15,13 @@ const FormOrder = ({setVisible, cart, total}: any) => {
         event.preventDefault();
         api.orders.add(order)
             .then(() => {
-                setVisible(false);
-                alert('order added')})
-            .catch(error => alert(error.message))
+                setVisible(false)
+                toast.success('Order added.', {
+                    position: "top-center",
+                    autoClose: 5000})})
+            .catch(error => toast.error(error.message + '. Order failed.', {
+                position: "top-center",
+                autoClose: 5000}))
     }
 
     return (
