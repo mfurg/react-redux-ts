@@ -13,6 +13,7 @@ export enum UserActionTypes {
     FETCH_USERS_PAGE = 'FETCH_USERS_PAGE',
     SET_TOTAL_PAGES = 'SET_TOTAL_PAGES',
     LOGIN = 'LOGIN',
+    CLEAR = 'CLEAR',
 }
 
 interface FetchUserAction {
@@ -34,6 +35,9 @@ interface SetTotalPagesAction {
 interface SetLogin {
     type: UserActionTypes.LOGIN
 }
+interface ClearUser {
+    type: UserActionTypes.CLEAR
+}
 
-export type UserAction = FetchUserAction | FetchCurrentUserAction | FetchUserPageAction | SetTotalPagesAction | SetLogin
+export type UserAction = FetchUserAction | FetchCurrentUserAction | FetchUserPageAction | SetTotalPagesAction | SetLogin | ClearUser;
 

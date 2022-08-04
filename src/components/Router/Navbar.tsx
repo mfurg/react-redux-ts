@@ -14,7 +14,7 @@ export const Navbar = () => {
 
     const [visible, setVisible] = useState(false);
     const {user, isLogged} = useTypedSelector(state => state.user);
-    const {setLogin, fetchCurrentUser} = useActions();
+    const {setLogin, fetchCurrentUser, clearUser} = useActions();
     const [action, setAction] = useState('');
     
     useEffect(() => {
@@ -37,6 +37,7 @@ export const Navbar = () => {
                     <li><NavLink to="/items" onClick={() => {
                         localStorage.setItem("token", '')
                         setLogin()
+                        clearUser()
                     }}>LOGOUT</NavLink></li></>
                 : <li><NavLink to="#" onClick={() => {
                         setAction('login')

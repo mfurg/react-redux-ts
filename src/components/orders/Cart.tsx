@@ -17,6 +17,10 @@ const Cart = () => {
         setTotal(cart.reduce((acc, current) => acc + Number(current.price) * current.quantity, 0 ));
     }, [cart])
 
+    if(cart.length === 0){
+        return (<div className="section"><h2>There are no items yet!</h2></div>)
+    }
+
     return (
         <div className="section">
             <Modal visible={visible} setVisible={setVisible}>

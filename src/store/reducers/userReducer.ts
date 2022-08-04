@@ -23,6 +23,8 @@ export const userReducer = (state = initialState, action:UserAction): UserState 
             return {...state, totalPages: action.payload}
         case UserActionTypes.LOGIN:
             return {...state, isLogged: !state.isLogged}
+        case UserActionTypes.CLEAR:
+            return {...state, user: {}}
         default:
             return state;
     }

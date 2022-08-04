@@ -27,3 +27,7 @@ export function setUsersPage (page: number): UserAction {
 export function setLogin (): UserAction {
     return {type: UserActionTypes.LOGIN}
 }
+
+export function clearUser (): UserAction {
+    return {type: UserActionTypes.CLEAR}
+}

@@ -27,7 +27,7 @@ const Items: React.FC = () => {
             </Modal>
             <div className="todos">
                 <div className="section-content">
-                    <input placeholder='Search...' onChange={(e) => setSearchQuery(e.target.value)}/>
+                    <input placeholder='Search...' className="searchInput" onChange={(e) => setSearchQuery(e.target.value)}/>
                     {user.role === 'admin' && <button onClick={() => setVisible(true)}>Add item</button>}
                     <Item/>
                 </div>

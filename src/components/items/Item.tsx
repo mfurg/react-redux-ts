@@ -3,7 +3,7 @@ import { Modal } from "components/helper/Modal";
 import { useActions } from "hooks/useActions";
 import { useTypedSelector } from "hooks/useTypedSelector";
 import { useState } from "react";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import FormEditItem from "./FormEditItem";
 
@@ -28,22 +28,15 @@ const Item = () => {
                 autoClose: 5000}))
     }
 
+    if(!items.length){
+        return <h2>Items not found</h2>
+    }
+
     return (
         <>
         <Modal visible={visible} setVisible={setVisible}>
             <FormEditItem setVisible={setVisible} item={editItem}/>
         </Modal>
-        <ToastContainer
-                position="top-center"
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                />
         {items.map((item: any) => (
         <div className="item" key={item.id}>
             <div className='item_content'>

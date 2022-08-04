@@ -26,7 +26,11 @@ const UserList: React.FC = () => {
             position: "top-center",
             autoClose: 5000}))
     }
-    console.log(editUser)
+
+    if(!users){
+        return <h2>Users not found!</h2>
+    }
+    
     return (
         <>
         <Modal visible={visible} setVisible={setVisible}>

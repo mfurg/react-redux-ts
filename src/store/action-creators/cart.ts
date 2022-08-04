@@ -14,3 +14,7 @@ export function removeItem (id: number): CartAction {
 export function addQuantity (id: number, quantity: number): CartAction {
     return {type: CartActionTypes.QUANTITY, payload: {id, quantity}}
 }
+
+export function clearCart (): CartAction {
+    return {type: CartActionTypes.CLEAR}
+}

@@ -5,7 +5,8 @@ export interface CartState {
 export enum CartActionTypes {
     ADD = 'ADD',
     REMOVE = 'REMOVE',
-    QUANTITY = 'QUANTITY'
+    QUANTITY = 'QUANTITY',
+    CLEAR = 'CLEAR'
 }
 
 interface AddAction {
@@ -20,5 +21,8 @@ interface QuantityAction {
     type: CartActionTypes.QUANTITY;
     payload: any;
 }
+interface ClearAction {
+    type: CartActionTypes.CLEAR;
+}
 
-export type CartAction = AddAction | RemoveAction | QuantityAction;
+export type CartAction = AddAction | RemoveAction | QuantityAction | ClearAction;

@@ -3,9 +3,12 @@ import api from '../helper/api';
 
 import 'styles/Orders.css';
 import { toast } from 'react-toastify';
+import { useActions } from 'hooks/useActions';
+import { useNavigate } from 'react-router-dom';
 
 const FormOrder = ({setVisible, cart, total}: any) => {
-
+    const {clearCart} = useActions();
+    const navigate = useNavigate();
     const order = {
         "amount": total,
         "items": cart
@@ -16,9 +19,11 @@ const FormOrder = ({setVisible, cart, total}: any) => {
         api.orders.add(order)
             .then(() => {
                 setVisible(false)
+                clearCart()
                 toast.success('Order added.', {
                     position: "top-center",
-                    autoClose: 5000})})
+                    autoClose: 5000})
+                navigate('/items')})        
             .catch(error => toast.error(error.message + '. Order failed.', {
                 position: "top-center",
                 autoClose: 5000}))
