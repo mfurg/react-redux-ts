@@ -2,7 +2,7 @@ import api from "components/helper/api";
 import { Dispatch } from "react"
 import { ItemAction, ItemActionTypes } from "../../types/item";
 
-export const fetchItems = (searchQuery = '', page = 1, limit = 3) => {
+export const fetchItems = (searchQuery = '', page = 1, limit = 5) => {
 
     const offset = ( page-1 ) * limit;
 
