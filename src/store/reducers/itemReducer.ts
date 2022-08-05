@@ -15,6 +15,8 @@ export const itemReducer = (state = initialState, action: ItemAction): ItemState
             return {...state, page: action.payload}
         case ItemActionTypes.FETCH_TOTAL_ITEMS_PAGES:
             return {...state, totalPages: action.payload}
+        case ItemActionTypes.SET_LIMIT:
+            return {...state, limit: action.payload}
         default:
             return state
     }

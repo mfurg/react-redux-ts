@@ -8,7 +8,8 @@ export interface ItemState {
 export enum ItemActionTypes {
     FETCH_ITEMS = 'FETCH_ITEMS',
     FETCH_ITEMS_PAGE = 'FETCH_ITEMS_PAGE',
-    FETCH_TOTAL_ITEMS_PAGES = 'FETCH_TOTAL_ITEMS_PAGES'
+    FETCH_TOTAL_ITEMS_PAGES = 'FETCH_TOTAL_ITEMS_PAGES',
+    SET_LIMIT = 'SET_LIMIT'
 }
 
 interface FetchItemAction {
@@ -23,5 +24,9 @@ interface FetchTotalItemPagesAction {
     type: ItemActionTypes.FETCH_TOTAL_ITEMS_PAGES;
     payload: number;
 }
+interface SetLimitItemsAction {
+    type: ItemActionTypes.SET_LIMIT;
+    payload: number;
+}
 
-export type ItemAction = FetchItemAction |  FetchItemPageAction | FetchTotalItemPagesAction;
+export type ItemAction = FetchItemAction |  FetchItemPageAction | FetchTotalItemPagesAction | SetLimitItemsAction;

@@ -2,13 +2,16 @@ import api from "components/helper/api";
 import { Dispatch } from "react"
 import { ItemAction, ItemActionTypes } from "../../types/item";
 
-export const fetchItems = (searchQuery = '') => {
+export const fetchItems = (searchQuery = '', page = 1, limit = 3) => {
+
+    const offset = ( page-1 ) * limit;
+
     return async (dispatch: Dispatch<ItemAction>) => {
         console.log('fetch')
-        await api.items.all(searchQuery)
+        await api.items.all(searchQuery, offset, limit)
                 .then(response => {
-                    dispatch({type: ItemActionTypes.FETCH_ITEMS, payload: response.data})
-                    //dispatch({type: ItemActionTypes.FETCH_TOTAL_ITEMS_PAGES, payload: (Number(response.headers['x-total-count'])/limit)})
+                    dispatch({type: ItemActionTypes.FETCH_ITEMS, payload: response.data.items})
+                    dispatch({type: ItemActionTypes.FETCH_TOTAL_ITEMS_PAGES, payload: (Math.ceil(Number(response.data.count)/limit)) })
                 })
                 .catch(response => console.log(response.message))
     }
@@ -16,4 +19,8 @@ export const fetchItems = (searchQuery = '') => {
 
 export function setItemPage (page: number): ItemAction {
     return {type: ItemActionTypes.FETCH_ITEMS_PAGE, payload: page}
+}
+
+export function setLimit (limit: number): ItemAction {
+    return {type: ItemActionTypes.SET_LIMIT, payload: limit}
 }

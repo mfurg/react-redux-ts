@@ -12,13 +12,19 @@ import FormAddItem from "./FormAddItem";
 const Items: React.FC = () => {
 
     const {user} = useTypedSelector(state => state.user)
+    const {totalPages, page, limit} = useTypedSelector(state => state.item)
     const [searchQuery, setSearchQuery] = useState('');
     const [visible, setVisible] = useState(false);
-    const {fetchItems} = useActions();
+    const {fetchItems, setItemPage, setLimit} = useActions();
+    const pages = [];
+
+    for(let i = 0; i < totalPages; i++){
+        pages.push(i+1)
+    }
     
     useEffect(() => {
-        fetchItems(searchQuery);
-    },[searchQuery])
+        fetchItems(searchQuery, page, limit);
+    },[searchQuery, page, limit])
 
     return (
         <div className="section">
@@ -27,10 +33,18 @@ const Items: React.FC = () => {
             </Modal>
             <div className="todos">
                 <div className="section-content">
-                    <input placeholder='Search...' className="searchInput" onChange={(e) => setSearchQuery(e.target.value)}/>
+                    <input placeholder='Search...' className="searchInput" onChange={(e) => {
+                        setSearchQuery(e.target.value)
+                        setItemPage(1)}}/>
+                    <input placeholder='Set limit' type="number" className="searchInput" onChange={(e) => e.target.value && setLimit(Number(e.target.value))}/>
                     {user.role === 'admin' && <button onClick={() => setVisible(true)}>Add item</button>}
                     <Item/>
                 </div>
+            </div>
+            <div className="pages">
+                {pages.map((p) => (
+                    <div className={page === p ? 'page current' : 'page'} onClick={() => setItemPage(p)} key={p}>{p}</div>
+                ))}
             </div>
         </div>
     )
