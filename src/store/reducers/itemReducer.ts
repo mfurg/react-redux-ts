@@ -4,7 +4,8 @@ const initialState: ItemState = {
     items: [],
     page: 1,
     limit: 5,
-    totalPages: 1
+    totalPages: 1,
+    loading: true
 }
 
 export const itemReducer = (state = initialState, action: ItemAction): ItemState => {
@@ -17,6 +18,8 @@ export const itemReducer = (state = initialState, action: ItemAction): ItemState
             return {...state, totalPages: action.payload}
         case ItemActionTypes.SET_LIMIT:
             return {...state, limit: action.payload}
+        case ItemActionTypes.SET_LOADING:
+            return {...state, loading: action.payload}
         default:
             return state
     }

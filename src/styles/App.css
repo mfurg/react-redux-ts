@@ -85,3 +85,11 @@ input {
     min-height: 25px;
     width: 50px;
 }
+
+.center {
+    margin: 50px auto;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}

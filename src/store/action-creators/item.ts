@@ -7,11 +7,11 @@ export const fetchItems = (searchQuery = '', page = 1, limit = 5) => {
     const offset = ( page-1 ) * limit;
 
     return async (dispatch: Dispatch<ItemAction>) => {
-        console.log('fetch')
+        
         await api.items.all(searchQuery, offset, limit)
                 .then(response => {
                     dispatch({type: ItemActionTypes.FETCH_ITEMS, payload: response.data.items})
-                    dispatch({type: ItemActionTypes.FETCH_TOTAL_ITEMS_PAGES, payload: (Math.ceil(Number(response.data.count)/limit)) })
+                    dispatch({type: ItemActionTypes.FETCH_TOTAL_ITEMS_PAGES, payload: (Math.ceil(Number(response.data.count)/limit))})
                 })
                 .catch(response => console.log(response.message))
     }
@@ -23,4 +23,8 @@ export function setItemPage (page: number): ItemAction {
 
 export function setLimit (limit: number): ItemAction {
     return {type: ItemActionTypes.SET_LIMIT, payload: limit}
+}
+
+export function setLoading (loaded: boolean): ItemAction {
+    return {type: ItemActionTypes.SET_LOADING, payload: loaded}
 }

@@ -7,15 +7,16 @@ import 'styles/Items.css'
 import Item from "./Item";
 import { Modal } from "components/helper/Modal";
 import FormAddItem from "./FormAddItem";
+import { Loader } from "components/helper/Loader";
 
 
 const Items: React.FC = () => {
 
     const {user} = useTypedSelector(state => state.user)
-    const {totalPages, page, limit} = useTypedSelector(state => state.item)
+    const {totalPages, page, limit, loading} = useTypedSelector(state => state.item)
     const [searchQuery, setSearchQuery] = useState('');
     const [visible, setVisible] = useState(false);
-    const {fetchItems, setItemPage, setLimit} = useActions();
+    const {fetchItems, setItemPage, setLimit, setLoading} = useActions();
     const pages = [];
 
     for(let i = 0; i < totalPages; i++){
@@ -23,7 +24,9 @@ const Items: React.FC = () => {
     }
     
     useEffect(() => {
+        setLoading(false);
         fetchItems(searchQuery, page, limit);
+        setLoading(true);
     },[searchQuery, page, limit])
 
     return (
@@ -38,8 +41,8 @@ const Items: React.FC = () => {
                         setItemPage(1)}}/>
                     <input placeholder='Set limit' type="number" className="searchInput" onChange={(e) => e.target.value && setLimit(Number(e.target.value))}/>
                     {user.role === 'admin' && <button onClick={() => setVisible(true)}>Add item</button>}
-                    <Item/>
                 </div>
+                {loading ? <Item/> : <Loader />}
             </div>
             <div className="pages">
                 {pages.map((p) => (
