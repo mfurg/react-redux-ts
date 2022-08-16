@@ -1,5 +1,3 @@
-import api from "components/helper/api";
-import { Dispatch } from "react"
 import { CartActionTypes, CartAction } from "types/cart";
 
 

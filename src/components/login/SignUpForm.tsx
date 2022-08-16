@@ -10,7 +10,7 @@ import { toast } from 'react-toastify';
 const SignUpForm = ({setVisible}: any) => {
  
     const history = useNavigate();
-    const [currentUser, setCurrentUser] = useState({role: "user"});
+    const [currentUser, setCurrentUser] = useState({role: "user", email: '', password: '', first_name: '', last_name: ''});
     const {setLogin} = useActions();
 
     const onSubmit = (event: SyntheticEvent) => {

@@ -1,5 +1,18 @@
+export interface CartItem {
+    id: number;
+    name: string;
+    description: string;
+    price: string;
+    quantity: number;
+}
+
+export interface OrderInterface {
+    "amount": number;
+    "items": CartItem[];
+}
+
 export interface CartState {
-    cart: any[];
+    cart: CartItem[];
 }
 
 export enum CartActionTypes {

@@ -1,11 +1,41 @@
+export interface UserInterface {
+    id?: number;
+    email: string;
+    password: string;
+    first_name?: string;
+    last_name?: string;
+    role: string;
+}
+
+export interface UserEdit {
+    first_name: string;
+    last_name: string;
+}
+
 export interface UserState {
-    users: any[],
-    user: any,
+    users: UserInterface[],
+    user: UserInterface,
     page: number,
     limit: number,
     totalPages: number,
     isLogged: boolean,
 }
+
+export interface UserLogin {
+    "user": {
+      email: string;
+      password: string;
+    }
+  }
+  
+export interface UserRegister {
+    "user": {
+      email: string;
+      password: string;
+      first_name: string;
+      last_name: string;
+    }
+  }
 
 export enum UserActionTypes {
     FETCH_USERS = 'FETCH_USERS',

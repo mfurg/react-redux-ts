@@ -4,11 +4,12 @@ import api from '../helper/api';
 
 import 'styles/Form.css';
 import { toast } from 'react-toastify';
+import { UserInterface } from 'types/user';
 
 
 const FormAddUser = ( {setVisible}: any ) => {
 
-    const [currentUser, setCurrentUser] = useState({role: 'user'});
+    const [currentUser, setCurrentUser] = useState<UserInterface>({role: 'user', email: '', password: ''});
     const {fetchUsers} = useActions()
 
     const onSubmit = (event: SyntheticEvent) => {

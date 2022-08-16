@@ -2,10 +2,11 @@ import api from "components/helper/api";
 import { useActions } from "hooks/useActions";
 import { SyntheticEvent, useState } from "react";
 import { toast } from "react-toastify";
+import { UserEdit } from "types/user";
 
 const FormEditUser = ({user, setVisible}: any) => {
 
-    const [currentUser, setCurrentUser] = useState({});
+    const [currentUser, setCurrentUser] = useState<UserEdit>({first_name: '', last_name: ''});
     const {fetchUsers, fetchCurrentUser} = useActions();
 
     const onSubmit = (event: SyntheticEvent) => {

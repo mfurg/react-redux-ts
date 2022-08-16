@@ -10,7 +10,7 @@ import FormAddItem from "./FormAddItem";
 import { Loader } from "components/helper/Loader";
 
 
-const Items: React.FC = () => {
+const Items = () => {
 
     const {user} = useTypedSelector(state => state.user)
     const {totalPages, page, limit, loading} = useTypedSelector(state => state.item)
@@ -45,7 +45,7 @@ const Items: React.FC = () => {
                 {loading ? <Item/> : <Loader />}
             </div>
             <div className="pages">
-                {pages.map((p) => (
+                {pages.map((p: number) => (
                     <div className={page === p ? 'page current' : 'page'} onClick={() => setItemPage(p)} key={p}>{p}</div>
                 ))}
             </div>

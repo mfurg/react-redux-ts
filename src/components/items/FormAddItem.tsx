@@ -4,11 +4,12 @@ import React, {SyntheticEvent, useState} from 'react';
 import { toast } from 'react-toastify';
 
 import 'styles/Form.css';
+import { ItemInterface } from 'types/item';
 
 
 const FormAddItem = ( {setVisible}: any ) => {
 
-    const [currentItem, setCurrentItem] = useState({});
+    const [currentItem, setCurrentItem] = useState<ItemInterface>({name: '', description: '', price: ''});
     const {fetchItems} = useActions();
 
     const onSubmit = (event: SyntheticEvent) => {

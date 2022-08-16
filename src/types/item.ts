@@ -1,5 +1,11 @@
+export interface ItemInterface {
+    name: string;
+    description: string;
+    price: string;
+}
+
 export interface ItemState {
-    items: any[];
+    items: ItemInterface[];
     page: number;
     limit: number;
     totalPages: number;

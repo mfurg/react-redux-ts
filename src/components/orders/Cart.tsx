@@ -1,20 +1,20 @@
 import { useActions } from "hooks/useActions";
 import { useTypedSelector } from "hooks/useTypedSelector";
 import { useEffect, useState } from "react";
+import { CartItem } from "types/cart";
 import { Modal } from "../helper/Modal";
 import FormOrder from "./FormOrder";
 
 const Cart = () => {
 
     const {cart} = useTypedSelector(state => state.cart);
-    const {addQuantity} = useActions();
     const {isLogged} = useTypedSelector(state => state.user);
     const [visible, setVisible] = useState(false);
-    const [total, setTotal] = useState([]);
-    const {removeItem} = useActions();
+    const [total, setTotal] = useState(0);
+    const {removeItem, addQuantity} = useActions();
 
     useEffect(() => {
-        setTotal(cart.reduce((acc, current) => acc + Number(current.price) * current.quantity, 0 ));
+        setTotal(cart.reduce((acc: number, current: CartItem) => acc + Number(current.price) * current.quantity, 0 ));
     }, [cart])
 
     if(cart.length === 0){
@@ -31,7 +31,7 @@ const Cart = () => {
             <div className="todos">
                 <div className="section-content">
                 <h1>Total: {total} гривнів</h1>
-                {cart.map((item) => 
+                {cart.map((item: CartItem) => 
                     <div className="item" key={item.id}>
                         <div className='item_content'>
                             <strong>{item.id}. {item.name}</strong>

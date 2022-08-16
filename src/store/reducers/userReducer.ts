@@ -4,7 +4,7 @@ const token = localStorage.getItem('token');
 
 const initialState: UserState = {
     users: [],
-    user: {},
+    user: {email: '', password: '', role: ''},
     page: 1,
     limit: 5,
     totalPages: 1,
@@ -24,7 +24,7 @@ export const userReducer = (state = initialState, action:UserAction): UserState 
         case UserActionTypes.LOGIN:
             return {...state, isLogged: !state.isLogged}
         case UserActionTypes.CLEAR:
-            return {...state, user: {}}
+            return {...state, user: {email: '', password: '', role: ''}}
         default:
             return state;
     }

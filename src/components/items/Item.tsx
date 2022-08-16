@@ -2,7 +2,7 @@ import api from "components/helper/api";
 import { Modal } from "components/helper/Modal";
 import { useActions } from "hooks/useActions";
 import { useTypedSelector } from "hooks/useTypedSelector";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import FormEditItem from "./FormEditItem";
@@ -13,7 +13,7 @@ const Item = () => {
     const {cart} = useTypedSelector(state => state.cart);
     const {user} = useTypedSelector(state => state.user);
     const [visible, setVisible] = useState(false);
-    const {addItem, removeItem, fetchItems, setItemPage} = useActions();
+    const {addItem, removeItem, fetchItems} = useActions();
     const [editItem, setEditItem] = useState(0);
     
 
@@ -55,7 +55,7 @@ const Item = () => {
                         }}>Edit</button>
                     <button onClick={() => deleteItem(Number(item.id))}  className='item_btns'>Delete</button> 
                 </div>
-                : cart.some( p => p.id === item.id) 
+                : cart.some( (p: any) => p.id === item.id) 
                     ? <div>
                         <button className='item_btns' onClick={() => removeItem(Number(item.id))}>Remove from cart</button>
                     </div>

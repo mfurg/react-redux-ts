@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom';
 const LoginForm = ({setVisible, setAction}:any) => {
 
     const {setLogin, fetchCurrentUser} = useActions();
-    const [currentUser, setCurrentUser] = useState({});
+    const [currentUser, setCurrentUser] = useState({email: '', password: ''});
     const navigate = useNavigate();
 
     const onSubmit = (event: SyntheticEvent) => {
